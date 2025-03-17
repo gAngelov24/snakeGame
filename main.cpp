@@ -3,8 +3,8 @@ using namespace std;
 bool gameOver;
 const int width = 20;
 const int height = 20;
-int x,y, fruitX, fruitY, score;
-enum eDirection { STOP = 0, LEFT, RIGHT, UP, DOWN};
+int x, y, fruitX, fruitY, score;
+enum eDirection {STOP = 0, LEFT, RIGHT, UP, DOWN};
 eDirection dir;
  
 void Setup()
@@ -20,7 +20,7 @@ void Setup()
 void Draw()
 {
     system("cls");
-    for(int i = 0; i < width+2; i++){
+    for(int i = 0; i < width; i++){
         cout << "#";
     } 
     cout << endl;
@@ -29,9 +29,9 @@ void Draw()
         for(int j = 0; j < width; j++){
             if(j == 0){
                 cout << "#";
-            } else {
+            } 
                 cout << " ";
-            }
+
             if(j == width - 1){
                 cout << "#";
             }
@@ -39,7 +39,7 @@ void Draw()
         cout << endl;
     }
 
-    for(int i = 0; i < height+2; i++){
+    for(int i = 0; i < width; i++){
         cout << "#";
     }
     cout << endl;
