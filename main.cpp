@@ -1,4 +1,7 @@
 #include <iostream>
+#include <stdlib.h>
+#include <conio.h>
+#define clrscr(); system("cls");
 using namespace std;
 bool gameOver;
 const int width = 20;
@@ -18,31 +21,35 @@ void Setup()
     score = 0;
 }
 void Draw()
-{
-    system("cls");
-    for(int i = 0; i < width; i++){
-        cout << "#";
+{   
+    //system("CLS");
+    clrscr();
+    for(int i = 0; i < width+2; i++){
+        std::cout << "#";
     } 
-    cout << endl;
+    std::cout << endl;
 
     for(int i = 0; i < height; i++){
-        for(int j = 0; j < width; j++){
+       for(int j = 0; j < width; j++){
             if(j == 0){
-                cout << "#";
-            } 
-                cout << " ";
+                std::cout << "# ";
+            } else {
+                std::cout << " ";
+            }
+            
 
             if(j == width - 1){
-                cout << "#";
+                std::cout << "#";
             }
         }
-        cout << endl;
+        std::cout << endl;
     }
 
-    for(int i = 0; i < width; i++){
-        cout << "#";
+    for(int i = 0; i < width+2; i++){
+        std::cout << "#";
     }
-    cout << endl;
+    std::cout << endl;
+    
 }
 void Input()
 {
@@ -55,8 +62,10 @@ void Logic()
 int main()
 {
     Setup();
+    
     while(!gameOver){
         Draw();
+        //gameOver = true;
         Input();
         Logic();
         //Sleep(10)
