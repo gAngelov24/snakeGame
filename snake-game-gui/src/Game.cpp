@@ -10,10 +10,18 @@ void Game::handleEvents(sf::RenderWindow& window) {
         if (event.type == sf::Event::Closed)
             window.close();
         else if (event.type == sf::Event::KeyPressed) {
-            if (event.key.code == sf::Keyboard::Up)    snake.setDirection(0);
-            if (event.key.code == sf::Keyboard::Right) snake.setDirection(1);
-            if (event.key.code == sf::Keyboard::Down)  snake.setDirection(2);
-            if (event.key.code == sf::Keyboard::Left)  snake.setDirection(3);
+            if (event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W){
+                snake.setDirection(0);
+            }
+            if (event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D){
+                snake.setDirection(1);
+            }
+            if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S){
+                snake.setDirection(2);
+            }
+            if (event.key.code == sf::Keyboard::Left || event.key.code == sf::Keyboard::A){
+                snake.setDirection(3);
+            }
         }
     }
 }
@@ -30,15 +38,16 @@ void Game::update() {
 
 void Game::render(sf::RenderWindow& window) {
     // Draw snake
-    for (const auto& segment : snake.getBody()) {
+    for (std::vector<std::pair<int, int>>::const_iterator it = snake.getBody().begin(); it != snake.getBody().end(); it++){
+        const std::pair<int, int>& segment = *it;
         sf::RectangleShape rect(sf::Vector2f(20, 20));
-        rect.setPosition(segment.first * 20, segment.second * 20);
+        rect.setPosition(segment.first + 50, segment.second + 50);
         rect.setFillColor(sf::Color::Green);
         window.draw(rect);
     }
     // Draw food
     sf::CircleShape foodShape(10);
     foodShape.setFillColor(sf::Color::Red);
-    foodShape.setPosition(food.getPosition().first * 20, food.getPosition().second * 20);
+    foodShape.setPosition(food.getPosition().first + 20, food.getPosition().second + 20);
     window.draw(foodShape);
 }

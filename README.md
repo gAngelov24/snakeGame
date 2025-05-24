@@ -21,4 +21,16 @@ My hope with using a GUI will be that I can make the snake move with the same sp
 GUI IS WORKING!!! (not really :()
 So I did a lot of research on what to use for a GUI when using C++ and by vast majority people said to use Qt. I tried getting it set up and I couldn't so I instead looked up basic GUI for C++ and I got the result to use SFML. After setting up classes and what not for food, the gameboard, and the snake, I finally got the SFML to work and a screen to pop up with a red dot. Problem is, the red dot does not work. I'll be back to report when it works.
 
+Report: So I figured out what the heck was happening. I accidently multiplied the position of the snake, so it was going way off the board and hence I couldn't see it. I changed the initial position of the fruit and snake to (20,20), and (50, 50) respectively. 
+
+Also, I added a sleep for 1 millisecond because the board was updating too fast, causing the snake to go HELLA fast, no bueno. So now I can see the snake, I can control the snake with wasd, I am for some reason having trouble using the arrow keys but I'll take a look at that later.
+
+Problem: All this improvement is great but right now the snake is just going wherever it wants. It can go on any pixel, it can leave the board and it doesn't eat the fruit nor does it grow. I am going to task my self things to fix below:
+
+Task 1: add proper boarder so that the snake cannot go off the board
+
+Task 2: allow the snake to eat the fruit and grow when it does
+
+Task 3: add columns to the board game that the snake and fuit follow. That way the game is more organised and it is clear when the board it full and all fruits have been eaten
+
 

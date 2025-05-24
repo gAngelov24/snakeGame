@@ -1,14 +1,26 @@
 #include "Snake.h"
 
-Snake::Snake(int startX, int startY) : body(1, {startX, startY}), direction(1) {}
+Snake::Snake(int startX, int startY){
+    body.clear();
+    body.push_back({startX, startY});
+    direction = 1;
+}
 
 void Snake::move() {
     auto head = body.front();
     switch (direction) {
-        case 0: head.second--; break; // Up
-        case 1: head.first++;  break; // Right
-        case 2: head.second++; break; // Down
-        case 3: head.first--;  break; // Left
+        case 0: // Move up
+        head.second--;
+        break;
+        case 1: // Move right
+        head.first++;  
+        break; 
+        case 2: // Move down
+        head.second++;
+        break;
+        case 3: // Move left
+        head.first--;
+        break;
     }
     body.insert(body.begin(), head);
     body.pop_back();
