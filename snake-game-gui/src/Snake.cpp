@@ -6,7 +6,7 @@ Snake::Snake(int startX, int startY){
     direction = 1;
 }
 
-void Snake::move() {
+void Snake::move(){
     auto head = body.front();
     switch (direction) {
         case 0: // Move up
@@ -26,11 +26,11 @@ void Snake::move() {
     body.pop_back();
 }
 
-void Snake::grow() {
+void Snake::grow(){
     body.push_back(body.back());
 }
 
-bool Snake::checkCollision() const {
+bool Snake::checkCollision() const{
     auto head = body.front();
     for (size_t i = 1; i < body.size(); ++i)
         if (body[i] == head)
@@ -38,14 +38,14 @@ bool Snake::checkCollision() const {
     return false;
 }
 
-void Snake::setDirection(int newDirection) {
+void Snake::setDirection(int newDirection){
     direction = newDirection;
 }
 
-std::pair<int, int> Snake::getHeadPosition() const {
+std::pair<int, int> Snake::getHeadPosition() const{
     return body.front();
 }
 
-const std::vector<std::pair<int, int>>& Snake::getBody() const {
+const std::vector<std::pair<int, int>>& Snake::getBody() const{
     return body;
 }

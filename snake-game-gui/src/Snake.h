@@ -4,7 +4,7 @@
 #include <vector>
 #include <utility>
 
-class Snake {
+class Snake{
 public:
     Snake(int startX, int startY);
     void move();

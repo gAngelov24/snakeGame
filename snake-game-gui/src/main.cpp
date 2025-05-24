@@ -12,7 +12,7 @@ int main(){
         window.clear();
         game.render(window);
         window.display();
-        //sf::sleep(sf::milliseconds(1));
+        sf::sleep(sf::milliseconds(1));
     }
     return 0;
 }

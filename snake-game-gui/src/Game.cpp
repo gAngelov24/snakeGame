@@ -1,10 +1,9 @@
 #include "Game.h"
 #include <SFML/Window/Event.hpp>
 
-Game::Game(int width, int height)
-    : snake(width / 2, height / 2), food(width, height), score(0), gameOver(false), width(width), height(height) {}
+Game::Game(int width, int height) : snake(width / 2, height / 2), food(width, height), score(0), gameOver(false), width(width), height(height) {}
 
-void Game::handleEvents(sf::RenderWindow& window) {
+void Game::handleEvents(sf::RenderWindow& window){
     sf::Event event;
     while (window.pollEvent(event)) {
         if (event.type == sf::Event::Closed)
@@ -26,7 +25,7 @@ void Game::handleEvents(sf::RenderWindow& window) {
     }
 }
 
-void Game::update() {
+void Game::update(){
     snake.move();
     if (snake.getHeadPosition() == food.getPosition()) {
         snake.grow();
@@ -36,7 +35,7 @@ void Game::update() {
     // TODO: Add collision with self and walls
 }
 
-void Game::render(sf::RenderWindow& window) {
+void Game::render(sf::RenderWindow& window){
     // Draw snake
     for (std::vector<std::pair<int, int>>::const_iterator it = snake.getBody().begin(); it != snake.getBody().end(); it++){
         const std::pair<int, int>& segment = *it;
