@@ -2,6 +2,7 @@
 #include <conio.h>
 #include <iostream>
 #include <windows.h>
+//#include <QtQuick>
 using namespace std;
 
 // height and width of the boundary
@@ -44,8 +45,9 @@ void GameRender(string playerName)
     system("cls"); // Clear the console
 
     // Creating top walls with '-'
-    for (int i = 0; i < width + 2; i++)
+    for (int i = 0; i < width + 2; i++){
         cout << "-";
+    }
     cout << endl;
 
     for (int i = 0; i < height; i++) {
@@ -69,21 +71,22 @@ void GameRender(string playerName)
                         prTail = true;
                     }
                 }
-                if (!prTail)
+                if (!prTail){
                     cout << " ";
+                }
             }
         }
         cout << endl;
     }
 
     // Creating bottom walls with '-'
-    for (int i = 0; i < width + 2; i++)
+    for (int i = 0; i < width + 2; i++){
         cout << "-";
+    }
     cout << endl;
 
     // Display player's score
-    cout << playerName << "'s Score: " << playerScore
-         << endl;
+    cout << playerName << "'s Score: " << playerScore << endl;
 }
 
 // Function for updating the game state
@@ -95,7 +98,7 @@ void UpdateGame()
     snakeTailX[0] = x;
     snakeTailY[0] = y;
 
-    for (int i = 1; i < snakeTailLen; i++) {
+    for (int i = 1; i < snakeTailLen; i++){
         prev2X = snakeTailX[i];
         prev2Y = snakeTailY[i];
         snakeTailX[i] = prevX;
@@ -104,7 +107,7 @@ void UpdateGame()
         prevY = prev2Y;
     }
 
-    switch (sDir) {
+    switch (sDir){
     case LEFT:
         x--;
         break;
@@ -120,17 +123,18 @@ void UpdateGame()
     }
 
     // Checks for snake's collision with the wall (|)
-    if (x >= width || x < 0 || y >= height || y < 0)
+    if (x >= width || x < 0 || y >= height || y < 0){
         isGameOver = true;
+    }
 
     // Checks for collision with the tail (o)
-    for (int i = 0; i < snakeTailLen; i++) {
+    for (int i = 0; i < snakeTailLen; i++){
         if (snakeTailX[i] == x && snakeTailY[i] == y)
             isGameOver = true;
     }
 
     // Checks for snake's collision with the food (#)
-    if (x == fruitCordX && y == fruitCordY) {
+    if (x == fruitCordX && y == fruitCordY){
         playerScore += 10;
         fruitCordX = rand() % width;
         fruitCordY = rand() % height;
