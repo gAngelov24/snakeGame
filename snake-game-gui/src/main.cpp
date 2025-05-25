@@ -8,11 +8,13 @@ int main(){
 
     while (window.isOpen()){
         game.handleEvents(window);
-        game.update();
+        if(!game.get_gameOver()){
+            game.update();
+        }
         window.clear();
         game.render(window);
         window.display();
-        sf::sleep(sf::milliseconds(1));
+        sf::sleep(sf::milliseconds(100));
     }
     return 0;
 }

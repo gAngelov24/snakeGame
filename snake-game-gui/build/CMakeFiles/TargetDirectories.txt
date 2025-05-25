@@ -1,0 +1,3 @@
+C:/Users/George Angelov/Documents/VS_Code_Projects/Snake_Game/snake-game-gui/build/CMakeFiles/SnakeGameGUI.dir
+C:/Users/George Angelov/Documents/VS_Code_Projects/Snake_Game/snake-game-gui/build/CMakeFiles/edit_cache.dir
+C:/Users/George Angelov/Documents/VS_Code_Projects/Snake_Game/snake-game-gui/build/CMakeFiles/rebuild_cache.dir

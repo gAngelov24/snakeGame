@@ -4,7 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-class Window {
+class Window{
 public:
     Window(int width, int height, const std::string& title);
     void create();

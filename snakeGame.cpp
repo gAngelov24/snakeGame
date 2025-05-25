@@ -2,7 +2,6 @@
 #include <conio.h>
 #include <iostream>
 #include <windows.h>
-#include <QtQuick>
 using namespace std;
 
 // height and width of the boundary
