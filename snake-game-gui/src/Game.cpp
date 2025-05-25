@@ -11,20 +11,20 @@ bool Game::get_gameOver(){
 
 void Game::handleEvents(sf::RenderWindow& window){
     sf::Event event;
-    while (window.pollEvent(event)) {
-        if (event.type == sf::Event::Closed)
+    while(window.pollEvent(event)){
+        if(event.type == sf::Event::Closed)
             window.close();
-        else if (event.type == sf::Event::KeyPressed) {
-            if (event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W){
+        else if(event.type == sf::Event::KeyPressed){
+            if((event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W) && (snake.getDirection() != 2)){
                 snake.setDirection(0);
             }
-            if (event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D){
+            if((event.key.code == sf::Keyboard::Right || event.key.code == sf::Keyboard::D) && (snake.getDirection() != 3)){
                 snake.setDirection(1);
             }
-            if (event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S){
+            if((event.key.code == sf::Keyboard::Down || event.key.code == sf::Keyboard::S) && (snake.getDirection() != 0)){
                 snake.setDirection(2);
             }
-            if (event.key.code == sf::Keyboard::Left || event.key.code == sf::Keyboard::A){
+            if((event.key.code == sf::Keyboard::Left || event.key.code == sf::Keyboard::A) && (snake.getDirection() != 1)){
                 snake.setDirection(3);
             }
         }

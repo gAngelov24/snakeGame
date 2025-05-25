@@ -42,6 +42,10 @@ void Snake::setDirection(int newDirection){
     direction = newDirection;
 }
 
+int Snake::getDirection(){
+    return direction;
+}
+
 std::pair<int, int> Snake::getHeadPosition() const{
     return body.front();
 }

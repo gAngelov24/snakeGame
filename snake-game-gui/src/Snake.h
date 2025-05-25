@@ -11,6 +11,7 @@ public:
     void grow();
     bool checkCollision() const;
     void setDirection(int newDirection);
+    int getDirection();
     std::pair<int, int> getHeadPosition() const;
     const std::vector<std::pair<int, int>>& getBody() const;
 
