@@ -31,10 +31,12 @@ void Snake::grow(){
 }
 
 bool Snake::checkCollision() const{
-    auto head = body.front();
-    for (std::size_t i = 1; i < body.size(); ++i)
-        if (body[i] == head)
+    std::pair<int,int> head = body.front();
+    for (int i = 1; i < body.size(); i++){
+        if (body[i] == head){
             return true;
+        }
+    }
     return false;
 }
 

@@ -12,6 +12,7 @@ public:
     void update();
     void render(sf::RenderWindow& window);
     bool get_gameOver();
+    void checkCollision();
 
 private:
     Snake snake;

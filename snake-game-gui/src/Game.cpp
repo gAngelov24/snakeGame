@@ -12,9 +12,9 @@ bool Game::get_gameOver(){
 void Game::handleEvents(sf::RenderWindow& window){
     sf::Event event;
     while(window.pollEvent(event)){
-        if(event.type == sf::Event::Closed)
+        if(event.type == sf::Event::Closed){
             window.close();
-        else if(event.type == sf::Event::KeyPressed){
+        } else if(event.type == sf::Event::KeyPressed){
             if((event.key.code == sf::Keyboard::Up || event.key.code == sf::Keyboard::W) && (snake.getDirection() != 2)){
                 snake.setDirection(0);
             }
@@ -42,6 +42,7 @@ void Game::update(){
     if(snake.getHeadPosition().first < 0 || snake.getHeadPosition().first >= width || snake.getHeadPosition().second < 0 || snake.getHeadPosition().second >= height){
         gameOver = true;
     }
+    
 }
 
 void Game::render(sf::RenderWindow& window){
@@ -53,6 +54,7 @@ void Game::render(sf::RenderWindow& window){
         rect.setFillColor(sf::Color::Green);
         window.draw(rect);
     }
+
     // Draw food
     sf::CircleShape foodShape(10);
     foodShape.setFillColor(sf::Color::Red);
@@ -75,10 +77,7 @@ void Game::render(sf::RenderWindow& window){
         text.setOrigin(text_rec.left + text_rec.width , text_rec.top + text_rec.height);
         text.setPosition(window.getSize().x , window.getSize().y);
         window.draw(text);
-    }
-
-
-    if(gameOver){
+    } else if(gameOver){
         sf::Font font;
         if (!font.loadFromFile("C:\\Users\\George Angelov\\Documents\\VS_Code_Projects\\Fonts\\Roboto-Black.ttf")){
             return;
@@ -93,5 +92,23 @@ void Game::render(sf::RenderWindow& window){
         text2.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
 
         window.draw(text2);
+
+        sf::Text text3;
+        text3.setFont(font);
+        std::string final_str = "Final Score: " + std::to_string(score);
+        text3.setString(final_str);
+        text3.setCharacterSize(30);
+        text3.setFillColor(sf::Color::White);
+        sf::FloatRect rect = text3.getLocalBounds();
+        text3.setOrigin(rect.left + rect.width / 2.0f , rect.top + rect.height / 2.0f);
+        text3.setPosition(window.getSize().x / 2.0f , (window.getSize().y / 2.0f) + (textRect.height));
+
+        window.draw(text3);
+    }
+}
+
+void Game::checkCollision(){
+    if(snake.checkCollision()){
+        gameOver = true;
     }
 }
