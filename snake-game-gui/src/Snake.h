@@ -7,6 +7,7 @@
 class Snake{
 public:
     Snake(int startX, int startY);
+    Snake(int startX, int startY, int dir);
     void move();
     void grow();
     bool checkCollision() const;

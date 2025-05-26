@@ -6,6 +6,12 @@ Snake::Snake(int startX, int startY){
     direction = 1;
 }
 
+Snake::Snake(int startX, int startY, int dir){
+    body.clear();
+    body.push_back({startX, startY});
+    direction = dir;
+}
+
 void Snake::move(){
     auto head = body.front();
     switch (direction) {
@@ -27,7 +33,20 @@ void Snake::move(){
 }
 
 void Snake::grow(){
-    body.push_back(body.back());
+    std::pair<int,int> head = body.front();
+    if(body.size() == 1){
+        if(direction == 0){
+            body.push_back({head.first, head.second++});
+        } else if(direction == 1){
+            body.push_back({head.first--, head.second});
+        } else if(direction == 2){
+            body.push_back({head.first, head.second--});
+        } else {
+            body.push_back({head.first++, head.second});
+        }
+    } else{
+        body.push_back(body.back());
+    }
 }
 
 bool Snake::checkCollision() const{

@@ -14,8 +14,7 @@ int main(){
         window.clear();
         game.render(window);
         window.display();
-        sf::sleep(sf::milliseconds(100));
-        //game.checkCollision();
+        sf::sleep(sf::milliseconds(50));
     }
     return 0;
 }

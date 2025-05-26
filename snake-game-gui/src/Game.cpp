@@ -2,7 +2,7 @@
 #include <SFML/Window/Event.hpp>
 
 // game ctor
-Game::Game(int width, int height) : snake(10, 10), food(width, height), score(0), gameOver(false), width(width), height(height) {}
+Game::Game(int width, int height) : snake(10, 10), food(), score(0), gameOver(false), width(width), height(height) {}
 
 // get gameOver
 bool Game::get_gameOver(){
@@ -33,16 +33,14 @@ void Game::handleEvents(sf::RenderWindow& window){
 
 void Game::update(){
     snake.move();
-    if(snake.getHeadPosition() == food.getPosition()){
+
+    if(snake.getHeadPosition().first < 0 || snake.getHeadPosition().first >= width || snake.getHeadPosition().second < 0 || snake.getHeadPosition().second >= height || snake.checkCollision()){
+        gameOver = true;
+    } else if(snake.getHeadPosition() == food.getPosition()){
         snake.grow();
         food.spawn();
         score += 10;
     }
-    
-    if(snake.getHeadPosition().first < 0 || snake.getHeadPosition().first >= width || snake.getHeadPosition().second < 0 || snake.getHeadPosition().second >= height){
-        gameOver = true;
-    }
-    
 }
 
 void Game::render(sf::RenderWindow& window){

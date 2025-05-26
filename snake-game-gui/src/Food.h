@@ -5,6 +5,7 @@
 
 class Food {
 public:
+    Food();
     Food(int width, int height);
     void spawn();
     std::pair<int, int> getPosition() const;
