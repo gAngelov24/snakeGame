@@ -12,6 +12,12 @@ Snake::Snake(int startX, int startY, int dir){
     direction = dir;
 }
 
+void Snake::reset(){
+    body.clear();
+    body.push_back({10, 10});
+    direction = 1;
+}
+
 void Snake::move(){
     auto head = body.front();
     switch (direction) {

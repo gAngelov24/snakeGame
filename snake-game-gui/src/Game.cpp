@@ -28,7 +28,25 @@ void Game::handleEvents(sf::RenderWindow& window){
             if((event.key.code == sf::Keyboard::Left || event.key.code == sf::Keyboard::A) && (snake.getDirection() != 1)){
                 snake.setDirection(3);
             }
-        } 
+        } else if(gameOver){
+            sf::Vector2i mouse = sf::Mouse::getPosition(window);
+            sf::Font font;
+            if (!font.loadFromFile("Fonts\\Roboto-Black.ttf")) return;
+            sf::Text playAgainText;
+            playAgainText.setFont(font);
+            playAgainText.setString("Play Again?");
+            playAgainText.setCharacterSize(30);
+            sf::FloatRect playAgainBounds = playAgainText.getLocalBounds();
+            playAgainText.setOrigin(playAgainBounds.left + playAgainBounds.width / 2.0f, playAgainBounds.top + playAgainBounds.height / 2.0f);
+            playAgainText.setPosition(window.getSize().x / 2.0f, (window.getSize().y * (2.0f/3.0f)));
+            sf::FloatRect globalBounds = playAgainText.getGlobalBounds();
+            if (event.type == sf::Event::MouseButtonReleased && event.mouseButton.button == sf::Mouse::Left) {
+                if (globalBounds.contains((float)mouse.x, (float)mouse.y)) {
+                   reset();
+                    user = 1;
+                }
+            }
+        }
     }
 }
 
@@ -88,7 +106,7 @@ void Game::render(sf::RenderWindow& window){
         text2.setFillColor(sf::Color::Red); 
         sf::FloatRect textRect = text2.getLocalBounds();
         text2.setOrigin(textRect.left + textRect.width / 2.0f, textRect.top + textRect.height / 2.0f);
-        text2.setPosition(window.getSize().x / 2.0f, window.getSize().y / 2.0f);
+        text2.setPosition(window.getSize().x / 2.0f, window.getSize().y / 3.0f);
 
         window.draw(text2);
 
@@ -100,9 +118,36 @@ void Game::render(sf::RenderWindow& window){
         text3.setFillColor(sf::Color::White);
         sf::FloatRect rect = text3.getLocalBounds();
         text3.setOrigin(rect.left + rect.width / 2.0f , rect.top + rect.height / 2.0f);
-        text3.setPosition(window.getSize().x / 2.0f , (window.getSize().y / 2.0f) + (textRect.height));
+        text3.setPosition(window.getSize().x / 2.0f , (window.getSize().y / 2.0f));
 
         window.draw(text3);
+
+        sf::Text text4; // init text obj
+        if(!font.loadFromFile("Fonts\\Roboto-Black.ttf")){return;}
+        text4.setFont(font);
+        text4.setString("Play Again?"); // set the string
+        text4.setCharacterSize(30); // set the text size
+        sf::FloatRect playAgainButton = text4.getLocalBounds(); // init textbox
+        // define the origin of the textbox, and set its postion
+        text4.setOrigin(playAgainButton.left + playAgainButton.width / 2.0f, playAgainButton.top + playAgainButton.height / 2.0f);
+        text4.setPosition(window.getSize().x / 2.0f, (window.getSize().y * (2.0f/3.0f)));
+
+        sf::Vector2i mouse = sf::Mouse::getPosition(window);
+        sf::FloatRect bounds = text4.getGlobalBounds();
+        if(bounds.contains((float)mouse.x , (float)mouse.y)){
+            if(!font.loadFromFile("Fonts\\Roboto-Black.ttf")){
+                return;
+            }
+            text4.setFillColor(sf::Color::Blue); 
+        } else{
+            if(!font.loadFromFile("Fonts\\Roboto-Black.ttf")){
+                return;
+            } 
+            text4.setFillColor(sf::Color::Red); 
+        }
+        text4.setFont(font);
+        window.draw(text4);
+
     }
 }
 
@@ -334,4 +379,11 @@ void Game::checkCollision(){
     if(snake.checkCollision()){
         gameOver = true;
     }
+}
+
+void Game::reset(){
+    food.reset();
+    snake.reset();
+    score = 0;
+    gameOver = false;
 }

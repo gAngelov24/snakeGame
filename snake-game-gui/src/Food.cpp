@@ -17,6 +17,13 @@ void Food::spawn(){
     y = rand() % height;
 }
 
+void Food::reset(){
+    x = 15;
+    y = 10;
+    width = 40;
+    height = 30;
+}
+
 std::pair<int, int> Food::getPosition() const{
     return {x, y};
 }

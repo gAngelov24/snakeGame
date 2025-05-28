@@ -10,6 +10,7 @@ public:
     Snake(int startX, int startY, int dir);
     void move();
     void grow();
+    void reset();
     bool checkCollision() const;
     void setDirection(int newDirection);
     int getDirection();
